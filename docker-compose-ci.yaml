@@ -1,14 +1,11 @@
 version: '3.9'
 services:
   nova_bot:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: vmonin/nova_bot:$GITHUB_REF_NAME-$GITHUB_RUN_ID
     restart: always
-    image: vmonin/nova_bot
     env_file:
       - ./.env
     volumes:
-      - ./:/app
+        - ./.docker_env:/code/.docker_env
     ports:
       - '8080:8000'
